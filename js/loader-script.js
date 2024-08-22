@@ -80,6 +80,7 @@ window.addEventListener("DOMContentLoaded", function () {
               // console.log("Camera position before: " + camera.globalPosition);
             } else if (state === BABYLON.WebXRState.IN_XR) {
               // console.log("Camera position after: " + xr.baseExperience.camera.globalPosition);
+              console.log("Entered AR mode, hit tests should be consistent now.");
               enterXRButton.isVisible = false;
             } else if (state === 3) {
               console.log(state);
@@ -118,6 +119,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
           hitTest.onHitTestResultObservable.add((results) => {
             if (results.length) {
+              console.log("Hit test successful:", results);
               dot.isVisible = true;
               results[0].transformationMatrix.decompose(
                 dot.scaling,
@@ -152,6 +154,7 @@ window.addEventListener("DOMContentLoaded", function () {
                   "cm";
               }
             } else {
+              console.log("Hit test failed, no surface detected.");
               lastHitTest = null;
               dot.isVisible = false;
               guiText.text = "";
